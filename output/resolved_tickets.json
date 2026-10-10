@@ -1,0 +1,314 @@
+{
+  "run": {
+    "shop_date": "2026-08-31",
+    "model": "gpt-6-luna",
+    "database": "data/campus_customs_new.db",
+    "started_from": "reset copy of data/campus_customs.db"
+  },
+  "cash": {
+    "starting_balance": 3400.0,
+    "payments": [
+      {
+        "id": 1,
+        "kind": "invoice",
+        "ref_id": 501,
+        "amount": 840.0,
+        "approved_by": "operator"
+      },
+      {
+        "id": 2,
+        "kind": "rent",
+        "ref_id": 1,
+        "amount": 2400.0,
+        "approved_by": "operator"
+      }
+    ],
+    "total_paid": 3240.0,
+    "ending_balance": 160.0,
+    "reconciles": true
+  },
+  "tickets": [
+    {
+      "id": 101,
+      "type": "customer_order",
+      "requester": "Tauhid Zaman",
+      "subject": "Bulldog tee",
+      "final_status": "resolved",
+      "outcome": "Could not be filled from stock (0 on hand). The restock was blocked by an unpaid, overdue invoice to the only linked vendor, not by a supply problem. Settling that invoice resolved the ticket; no delivery date was promised.",
+      "cash_effect": {
+        "change": -840.0,
+        "before": 3400.0,
+        "after": 2560.0,
+        "why": "Payment of invoice 501 to Bulldog Print Co \u2014 the open, 3-days-overdue invoice that was blocking the vendor from shipping the restock."
+      },
+      "run_id": "d6fb9f730577",
+      "delegations": [
+        {
+          "from": "Boss",
+          "to": "Inventory"
+        },
+        {
+          "from": "Boss",
+          "to": "Accounting"
+        }
+      ],
+      "agents": [
+        {
+          "agent": "Boss",
+          "participated": true,
+          "tools_used": [
+            "get_ticket",
+            "update_ticket_status"
+          ],
+          "tool_calls": 2,
+          "cached_calls": 0,
+          "delegated_to": [
+            "Inventory",
+            "Accounting"
+          ],
+          "contribution": "delegated to Inventory, Accounting; called get_ticket, update_ticket_status"
+        },
+        {
+          "agent": "Inventory",
+          "participated": true,
+          "tools_used": [
+            "check_stock",
+            "check_vendor_availability"
+          ],
+          "tool_calls": 2,
+          "cached_calls": 1,
+          "delegated_to": [],
+          "contribution": "called check_stock, check_vendor_availability"
+        },
+        {
+          "agent": "Accounting",
+          "participated": true,
+          "tools_used": [
+            "get_cash_balance",
+            "list_invoices",
+            "request_payment_approval"
+          ],
+          "tool_calls": 3,
+          "cached_calls": 1,
+          "delegated_to": [],
+          "contribution": "called get_cash_balance, list_invoices, request_payment_approval"
+        },
+        {
+          "agent": "Facilities",
+          "participated": false,
+          "contribution": "Not consulted \u2014 outside this ticket's scope."
+        },
+        {
+          "agent": "Customer Service",
+          "participated": false,
+          "contribution": "Not consulted \u2014 outside this ticket's scope."
+        }
+      ],
+      "human_approvals": [
+        {
+          "approval_id": 1,
+          "kind": "invoice",
+          "payee": "Bulldog Print Co",
+          "amount": 840.0,
+          "status": "approved",
+          "requested_by": "Accounting",
+          "decided_by": "operator",
+          "moved_cash": true,
+          "payment_id": 1,
+          "note": "Settled \u2014 cash left the account."
+        }
+      ],
+      "blocked_by": "The restock is blocked by open unpaid invoice 501, not simply by stock: Bulldog Print Co will not ship while the invoice is open."
+    },
+    {
+      "id": 102,
+      "type": "rent_notice",
+      "requester": "Elm City Properties",
+      "subject": "Rent due",
+      "final_status": "resolved",
+      "outcome": "Rent confirmed as upcoming, not overdue, on the shop clock. Payment prepared, authorised by a human, and settled.",
+      "cash_effect": {
+        "change": -2400.0,
+        "before": 2560.0,
+        "after": 160.0,
+        "why": "Monthly rent for the Chapel Street shop on lease 1 to Elm City Properties, due 2026-09-02."
+      },
+      "run_id": "ecdec9a516fd",
+      "delegations": [
+        {
+          "from": "Boss",
+          "to": "Facilities"
+        },
+        {
+          "from": "Boss",
+          "to": "Accounting"
+        }
+      ],
+      "agents": [
+        {
+          "agent": "Boss",
+          "participated": true,
+          "tools_used": [
+            "get_ticket",
+            "update_ticket_status"
+          ],
+          "tool_calls": 2,
+          "cached_calls": 0,
+          "delegated_to": [
+            "Facilities",
+            "Accounting"
+          ],
+          "contribution": "delegated to Facilities, Accounting; called get_ticket, update_ticket_status"
+        },
+        {
+          "agent": "Inventory",
+          "participated": false,
+          "contribution": "Not consulted \u2014 outside this ticket's scope."
+        },
+        {
+          "agent": "Accounting",
+          "participated": true,
+          "tools_used": [
+            "get_cash_balance",
+            "request_payment_approval"
+          ],
+          "tool_calls": 2,
+          "cached_calls": 2,
+          "delegated_to": [],
+          "contribution": "called get_cash_balance, request_payment_approval"
+        },
+        {
+          "agent": "Facilities",
+          "participated": true,
+          "tools_used": [
+            "get_rent_status"
+          ],
+          "tool_calls": 1,
+          "cached_calls": 0,
+          "delegated_to": [],
+          "contribution": "called get_rent_status"
+        },
+        {
+          "agent": "Customer Service",
+          "participated": false,
+          "contribution": "Not consulted \u2014 outside this ticket's scope."
+        }
+      ],
+      "human_approvals": [
+        {
+          "approval_id": 2,
+          "kind": "rent",
+          "payee": "Elm City Properties",
+          "amount": 2400.0,
+          "status": "approved",
+          "requested_by": "Accounting",
+          "decided_by": "operator",
+          "moved_cash": true,
+          "payment_id": 2,
+          "note": "Settled \u2014 cash left the account."
+        }
+      ],
+      "blocked_by": ""
+    },
+    {
+      "id": 103,
+      "type": "price_override",
+      "requester": "Yale AI Club",
+      "subject": "Bulk hoodie discount",
+      "final_status": "resolved",
+      "outcome": "Only 8 of 20 size-M hoodies available (short 12). A 10% discount was recommended and approved as a commitment; it gives away margin but moves no cash. No restock vendor could be established, so no fulfilment date was given.",
+      "cash_effect": {
+        "change": 0.0,
+        "before": 160.0,
+        "after": 160.0,
+        "why": "The approval was a discount, not a payment. $116.00 of margin was given away; no money left the account."
+      },
+      "run_id": "7de76ddd25ed",
+      "delegations": [
+        {
+          "from": "Boss",
+          "to": "Inventory"
+        },
+        {
+          "from": "Boss",
+          "to": "Accounting"
+        },
+        {
+          "from": "Inventory",
+          "to": "Accounting"
+        }
+      ],
+      "agents": [
+        {
+          "agent": "Boss",
+          "participated": true,
+          "tools_used": [
+            "get_ticket",
+            "request_decision_approval",
+            "update_ticket_status"
+          ],
+          "tool_calls": 3,
+          "cached_calls": 1,
+          "delegated_to": [
+            "Inventory",
+            "Accounting"
+          ],
+          "contribution": "delegated to Inventory, Accounting; called get_ticket, request_decision_approval, update_ticket_status"
+        },
+        {
+          "agent": "Inventory",
+          "participated": true,
+          "tools_used": [
+            "check_stock",
+            "check_vendor_availability"
+          ],
+          "tool_calls": 2,
+          "cached_calls": 1,
+          "delegated_to": [
+            "Accounting"
+          ],
+          "contribution": "delegated to Accounting; called check_stock, check_vendor_availability"
+        },
+        {
+          "agent": "Accounting",
+          "participated": true,
+          "tools_used": [
+            "get_cash_balance",
+            "get_pricing",
+            "list_invoices",
+            "request_decision_approval"
+          ],
+          "tool_calls": 6,
+          "cached_calls": 7,
+          "delegated_to": [],
+          "contribution": "called get_cash_balance, get_pricing, list_invoices, request_decision_approval"
+        },
+        {
+          "agent": "Facilities",
+          "participated": false,
+          "contribution": "Not consulted \u2014 outside this ticket's scope."
+        },
+        {
+          "agent": "Customer Service",
+          "participated": false,
+          "contribution": "Not consulted \u2014 outside this ticket's scope."
+        }
+      ],
+      "human_approvals": [
+        {
+          "approval_id": 3,
+          "kind": "discount",
+          "payee": "Ticket 103 \u2014 Yale AI Club bulk hoodie discount",
+          "amount": 116.0,
+          "status": "approved",
+          "requested_by": "Accounting",
+          "decided_by": "operator",
+          "moved_cash": false,
+          "payment_id": null,
+          "note": "Approved as a commitment; no cash moved."
+        }
+      ],
+      "blocked_by": "The order cannot be filled in full from current stock (8 on hand versus 20 requested). The supplying vendor for CC-HOOD-NAVY is not established. Bulldog Print Co's open invoice 501 is not shown to be linked to this hoodie SKU, so it is not established as this restock's blocker."
+    }
+  ]
+}

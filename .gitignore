@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+
+# Both database files are committed on purpose: the pristine master
+# (data/campus_customs.db) and the working copy (data/campus_customs_new.db),
+# so a grader can clone and run the app without any setup step.
+
+# Node
+node_modules/
+dist/
+*.log
+
+# OS
+.DS_Store

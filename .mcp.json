@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "campus-customs-ops": {
+      "command": "/Users/kellyhodge/Desktop/AI Foundations/Homework/Homework-5/.venv/bin/python",
+      "args": [
+        "/Users/kellyhodge/Desktop/AI Foundations/Homework/Homework-5/mcp_server/server.py"
+      ]
+    }
+  }
+}
