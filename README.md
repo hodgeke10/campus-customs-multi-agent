@@ -18,7 +18,15 @@ python3 -m venv .venv
 cd frontend && npm install
 ```
 
-`PORTKEY_API_KEY` is read from the **workspace-root** `.env` (not committed).
+Then supply the Portkey credential:
+
+```bash
+cp .env.example .env     # then put your PORTKEY_API_KEY in it
+```
+
+`.env` is gitignored and never committed. The backend checks the workspace-root
+`.env` first (for the environment this was built in) and falls back to this
+project's own `.env`, which is what a standalone clone will use.
 
 ## Running
 

@@ -47,7 +47,11 @@ def build_model() -> OpenAIChatModel:
     """Create the shared gpt-6-luna model routed through Portkey."""
     api_key = os.getenv("PORTKEY_API_KEY")
     if not api_key:
-        raise RuntimeError("PORTKEY_API_KEY is missing from the workspace-root .env file.")
+        raise RuntimeError(
+            "PORTKEY_API_KEY is not set. Put it in a .env file either at the "
+            f"workspace root ({WORKSPACE / '.env'}) or in this project "
+            f"({PROJECT / '.env'}). See .env.example."
+        )
 
     client = AsyncOpenAI(
         api_key=api_key,
