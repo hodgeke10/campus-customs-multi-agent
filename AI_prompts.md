@@ -316,7 +316,7 @@ tickets closed with the requester told nothing. Fixed in `boss.md` and
 
 > do include both database files under data/ (the original and our working copy) so graders can run the app easily
 
-**Repository:** <https://github.com/hodgeke10/mgt403-hw5-campus-customs>
+**Repository:** <https://github.com/hodgeke10/campus-customs-multi-agent>
 
 Verified before pushing that no `.env`, `.venv`, or `node_modules` was staged and
 that no secret-shaped string appeared anywhere in the staged content, and
