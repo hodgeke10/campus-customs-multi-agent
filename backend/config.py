@@ -20,7 +20,11 @@ HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parent
 WORKSPACE = PROJECT.parents[1]
 
+# The workspace-root .env is the real credential store on the machine this was
+# built on. A standalone clone of this project has no workspace above it, so a
+# project-level .env is accepted as a fallback — see .env.example.
 load_dotenv(WORKSPACE / ".env")
+load_dotenv(PROJECT / ".env")
 
 # Required model for this assignment — overrides the workspace default.
 MODEL_NAME = "gpt-6-luna"
