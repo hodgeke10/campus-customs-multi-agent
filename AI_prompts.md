@@ -322,17 +322,3 @@ Verified before pushing that no `.env`, `.venv`, or `node_modules` was staged an
 that no secret-shaped string appeared anywhere in the staged content, and
 verified after pushing by cloning the public repo into a clean directory: 52
 files, no `.env`, and the database opens at $3,400.00 with three open tickets.
-
-<!--
-TEMPLATE for each remaining problem:
-
-## Problem N — <title>
-
-> <prompt>
-
-**Follow-up**
-
-> <follow-up prompt>
-
-*What was lacking:* <one sentence>
--->
